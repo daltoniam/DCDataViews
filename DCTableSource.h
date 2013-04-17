@@ -53,6 +53,6 @@
 -(CGFloat)heightOfObject:(id)object tableView:(UITableView*)tableView;
 
 //this does nothing. Just here for subclass convenience. is Called by cellForRowAtIndexPath.
--(void)processCell:(UITableViewCell*)cell object:(id)object index:(NSIndexPath*)index;
+-(void)processCell:(UITableViewCell*)cell object:(id)object index:(NSIndexPath*)index table:(UITableView*)table;
 
 @end

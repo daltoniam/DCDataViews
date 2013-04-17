@@ -10,6 +10,7 @@
 #import "DCTableSource.h"
 #import <objc/runtime.h>
 #import "DCTableViewCell.h"
+#import "DCTableGroupedCell.h"
 
 @implementation DCTableSource
 
@@ -51,7 +52,22 @@
     
     [(DCTableViewCell*)cell setObject:object];
     
-    [self processCell:cell object:object index:indexPath];
+    if([cell isKindOfClass:[DCTableGroupedCell class]])
+    {
+        if(indexPath.row == 0)
+        {
+            if([table numberOfRowsInSection:indexPath.section] == 1)
+                [(DCTableGroupedCell*)cell setPosition:DCGroupedCellSingle];
+            else
+                [(DCTableGroupedCell*)cell setPosition:DCGroupedCellTop];
+        }
+        else if([table numberOfRowsInSection:indexPath.section] == indexPath.row+1)
+            [(DCTableGroupedCell*)cell setPosition:DCGroupedCellBottom];
+        else
+            [(DCTableGroupedCell*)cell setPosition:DCGroupedCellMiddle];
+    }
+    
+    [self processCell:cell object:object index:indexPath table:table];
     
     if([cell respondsToSelector:@selector(setDelegate:)])
         [cell performSelector:@selector(setDelegate:) withObject:self.delegate];
@@ -74,7 +90,7 @@
     return cell;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(void)processCell:(UITableViewCell*)cell object:(id)object index:(NSIndexPath*)index
+-(void)processCell:(UITableViewCell*)cell object:(id)object index:(NSIndexPath*)index table:(UITableView*)table
 {
     //left blank on purpose, this is subclasses.
 }
