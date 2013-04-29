@@ -29,6 +29,10 @@
 //when the tableview delete button is pressed.
 -(void)didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 
+//scrollView forward
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
