@@ -53,6 +53,9 @@
 //this is use to set the highlighted/selected background color of a cell.
 @property(nonatomic,strong)UIColor* selectedColor;
 
+//do not deselect the cell after selection.
+@property(nonatomic,assign)BOOL stayActive;
+
 //get the height of an object.
 -(CGFloat)heightOfObject:(id)object tableView:(UITableView*)tableView;
 

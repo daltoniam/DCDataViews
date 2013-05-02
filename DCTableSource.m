@@ -14,7 +14,7 @@
 
 @implementation DCTableSource
 
-@synthesize items,sections,searchController;
+@synthesize items,sections,searchController,stayActive;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(id)init
@@ -28,10 +28,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.sections && self.items.count > 0)
+    if (self.sections)
     {
-        NSArray* itemArray = [self.items objectAtIndex:section];
-        return itemArray.count;
+        if(self.items.count > section)
+        {
+            NSArray* itemArray = [self.items objectAtIndex:section];
+            return itemArray.count;
+        }
+        return 0;
     }
     return self.items.count;
 }
@@ -156,8 +160,11 @@
 {
     if (self.sections)
     {
-        NSArray* itemArray = [self.items objectAtIndex:indexPath.section];
-        return [itemArray objectAtIndex:indexPath.row];
+        if(self.items.count > indexPath.section)
+        {
+            NSArray* itemArray = [self.items objectAtIndex:indexPath.section];
+            return [itemArray objectAtIndex:indexPath.row];
+        }
     }
     return [self.items objectAtIndex:indexPath.row];
 }
@@ -189,7 +196,8 @@
     id object = [self tableView:table objectForRowAtIndexPath:indexPath];
     if([self.delegate respondsToSelector:@selector(didSelectObject:atIndex:)])
         [self.delegate didSelectObject:object atIndex:indexPath];
-    [table deselectRowAtIndexPath:indexPath animated:YES];
+    if(!self.stayActive)
+        [table deselectRowAtIndexPath:indexPath animated:YES];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)tableView:(UITableView *)table canEditRowAtIndexPath:(NSIndexPath *)indexPath
