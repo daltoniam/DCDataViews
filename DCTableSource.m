@@ -54,6 +54,9 @@
     if (cell == nil)
         cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
+    if([cell respondsToSelector:@selector(setDelegate:)])
+        [cell performSelector:@selector(setDelegate:) withObject:self.delegate];
+    
     [(DCTableViewCell*)cell setObject:object];
     
     if([cell isKindOfClass:[DCTableGroupedCell class]])
@@ -72,9 +75,6 @@
     }
     
     [self processCell:cell object:object index:indexPath table:table];
-    
-    if([cell respondsToSelector:@selector(setDelegate:)])
-        [cell performSelector:@selector(setDelegate:) withObject:self.delegate];
     
     if([self.delegate respondsToSelector:@selector(cell:withObject:atIndex:)])
         [self.delegate cell:cell withObject:object atIndex:indexPath];
