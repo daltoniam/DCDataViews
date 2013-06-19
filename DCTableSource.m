@@ -221,8 +221,8 @@
 -(void)setSearchController:(UISearchDisplayController *)controller
 {
     searchController = controller;
-    controller.searchResultsDelegate = self;
-    controller.searchResultsDataSource = self;
+    //controller.searchResultsDelegate = self;
+    //controller.searchResultsDataSource = self;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(CGFloat)heightOfObject:(id)object tableView:(UITableView*)table
