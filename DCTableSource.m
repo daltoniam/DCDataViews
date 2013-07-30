@@ -218,6 +218,15 @@
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellEditingStyle)tableView:(UITableView *)table editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id object = [self tableView:table objectForRowAtIndexPath:indexPath];
+    if([self.delegate respondsToSelector:@selector(editingStyleForObject:atIndexPath:)])
+        return [self.delegate editingStyleForObject:object atIndexPath:indexPath];
+
+    return UITableViewCellEditingStyleDelete;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setSearchController:(UISearchDisplayController *)controller
 {
     searchController = controller;
