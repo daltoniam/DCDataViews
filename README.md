@@ -19,7 +19,8 @@ Requires Quartz framework.
     self.tableView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1];//[UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-	id object = [[yourobject alloc] init]; //your custom objects, can be any kind of object
+	yourObject* object = [[yourObject alloc] init]; //your custom objects, can be any kind of object
+	object.text = @"Hello World!";
 	[tableSource.items addObject:object];
 	
 	//then implement this delegate to map the object to cell associates.
@@ -47,7 +48,7 @@ Requires Quartz framework.
 	    	return self;
 	    }
 	}
-	///////////////////////////////////////////////////////////////////////////////////////////////////
+
 	-(void)layoutSubviews
 	{
 	    [super layoutSubviews];
@@ -59,7 +60,7 @@ Requires Quartz framework.
 	    [super setObject:object];
 	    //example of using your custom object to set the textLabel of UITableViewCell
 	    yourObject* item = object;
-	    self.textLabel.text = item.text;
+	    self.textLabel.text = item.text; //this would be "Hello World!" as the example above
 	    //the rest of your your custom logic here
 	}
 	
