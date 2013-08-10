@@ -7,9 +7,11 @@ Wrappers around UITableView and UICollectionView to make simpler to use. It also
 Requires Quartz framework. 
 
 # Example #
-
+	
+	//first create a tableSource datasource manager
 	DCTableSource *tableSource = [[DCTableSource alloc] init];
 	tableSource.delegate = self;
+	//next create a tableviewe and assign it's delegate and datasource to the manager
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped]; // UITableViewStyleGrouped
     self.tableView.delegate = tableSource;
     self.tableView.dataSource = tableSource;
@@ -17,7 +19,7 @@ Requires Quartz framework.
     self.tableView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1];//[UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-	id object = [yourobject createObject]; //your custom objects, can be any kind of object
+	id object = [[yourobject alloc] init]; //your custom objects, can be any kind of object
 	[tableSource.items addObject:object];
 	
 	//then implement this delegate to map the object to cell associates.
@@ -26,6 +28,39 @@ Requires Quartz framework.
 	    if([object isKindOfClass:[yourobject class]])
 	        return [MessageCell class];
 	    return nil;
+	}
+	
+	
+	//then in your MessageCell.m class (which is a subclass of DCTableViewCell provided):
+
+	+(CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object
+	{
+	    return 44; //the normal UITableViewCell
+	}
+
+	-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+	{
+	    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
+	    {
+	    	//the usual UITableViewCell init method
+	    	self.textLabel.textColor = [UIColor greenColor]; //just an example
+	    	return self;
+	    }
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	-(void)layoutSubviews
+	{
+	    [super layoutSubviews];
+	    //layout your subviews as you normally would
+	}
+	//this method comes 
+	-(void)setObject:(id)object
+	{
+	    [super setObject:object];
+	    //example of using your custom object to set the textLabel of UITableViewCell
+	    yourObject* item = object;
+	    self.textLabel.text = item.text;
+	    //the rest of your your custom logic here
 	}
 	
 # Requirements #
