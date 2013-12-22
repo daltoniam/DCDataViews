@@ -12,12 +12,20 @@
 
 @interface DCTableViewCell : UITableViewCell
 
-//return/caculate the height you want this cell subclass to be
+/**
+Return/caculate the height you want this cell subclass to be.
+ @param the tableview this cell will be in. Use this to find out the width of the tableview.
+ @param object is the object that will be apart of this cell.
+ @return height of cell.
+*/
 +(CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object;
 
-//this is use to style the cell with the current object.
-//It is not recommend to not do any intensive work in this method
-//as cells recycle, so this gets called a lot when scrolling.
+/**
+ Use this to style the cell with the current object.
+ It is strongly not recommend to not do any intensive work in this method, just simple property assignment from the object,
+ as scrolling preformance will be damage if work is too intensive.
+ As cells are recycled, this method is called often.
+ */
 -(void)setObject:(id)object;
 
 @end
