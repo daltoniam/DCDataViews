@@ -142,8 +142,8 @@ Open your project in Xcode from the .xcworkspace file (not the usual project fil
 
 # TODO #
 
-Need to support horizontal scrolling in DCCollectionViewLayout.
-Need to support sections in CollectionView.
+- Need to support horizontal scrolling in DCCollectionViewLayout.
+- Need to support sections in CollectionView.
 
 # License #
 
