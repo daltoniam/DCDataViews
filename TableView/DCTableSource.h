@@ -32,6 +32,13 @@
 //when the tableview delete button is pressed.
 -(UITableViewCellEditingStyle)editingStyleForObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 
+/**
+ Set the delete text.
+ @param indexPath is the index path to set the delete text at
+ @return the string to use for the delete text
+ */
+-(NSString*)deleteTextAtIndex:(NSIndexPath*)indexPath;
+
 //scrollView forward
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView;

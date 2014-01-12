@@ -253,5 +253,12 @@
         [self.delegate scrollViewDidScroll:scrollView];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.delegate respondsToSelector:@selector(deleteTextAtIndex:)])
+        return [self.delegate deleteTextAtIndex:indexPath];
+    return nil;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @end
