@@ -7,7 +7,17 @@ Pod::Spec.new do |s|
   s.author       = { "Dalton Cherry" => "daltoniam@gmail.com" }
   s.source       = { :git => "https://github.com/daltoniam/DCDataViews.git", :tag => "0.0.3" }
   s.ios.deployment_target = '5.0'
-  s.source_files = '*.{h,m}'
-  s.framework = 'CoreGraphics'
+  s.source_files = 'DCDataViews.h'
+  s.public_header_files = '*.h'
   s.requires_arc = true
+
+  s.subspec 'CollectionView' do |ss|
+    ss.source_files = 'CollectionView/*.{h,m}'
+    ss.framework = 'CoreGraphics'
+  end
+
+  s.subspec 'TableView' do |ss|
+    ss.source_files = 'TableView/*.{h,m}'
+    ss.framework = 'CoreGraphics'
+  end
 end
