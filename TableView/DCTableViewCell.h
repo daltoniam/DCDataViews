@@ -18,7 +18,7 @@ Return/caculate the height you want this cell subclass to be.
  @param object is the object that will be apart of this cell.
  @return height of cell.
 */
-+(CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object;
++(CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object indexPath:(NSIndexPath*)indexPath;
 
 /**
  Use this to style the cell with the current object.

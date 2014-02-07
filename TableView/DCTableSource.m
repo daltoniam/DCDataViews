@@ -187,7 +187,7 @@
 - (CGFloat)tableView:(UITableView*)table heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     id object = [self tableView:table objectForRowAtIndexPath:indexPath];
-    return [self heightOfObject:object tableView:table];
+    return [self heightOfObject:object tableView:table indexPath:indexPath];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //does the custom checkmark and GPLoadMore actions. Use didselect object below to get type
@@ -234,10 +234,10 @@
     //controller.searchResultsDataSource = self;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(CGFloat)heightOfObject:(id)object tableView:(UITableView*)table
+-(CGFloat)heightOfObject:(id)object tableView:(UITableView*)table indexPath:(NSIndexPath*)indexPath
 {
     Class cls = [self tableView:table cellClassForObject:object];
-    CGFloat height = [cls tableView:table rowHeightForObject:object];
+    CGFloat height = [cls tableView:table rowHeightForObject:object indexPath:indexPath];
     return height;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
