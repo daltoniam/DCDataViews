@@ -12,7 +12,7 @@
 @implementation DCTableViewCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-+(CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object
++(CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object indexPath:(NSIndexPath*)indexPath
 {
     return 44;
 }

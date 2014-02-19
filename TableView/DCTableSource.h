@@ -67,7 +67,7 @@
 @property(nonatomic,assign)BOOL stayActive;
 
 //get the height of an object.
--(CGFloat)heightOfObject:(id)object tableView:(UITableView*)tableView;
+-(CGFloat)heightOfObject:(id)object tableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath;
 
 //this does nothing. Just here for subclass convenience. is Called by cellForRowAtIndexPath.
 -(void)processCell:(UITableViewCell*)cell object:(id)object index:(NSIndexPath*)index table:(UITableView*)table;
