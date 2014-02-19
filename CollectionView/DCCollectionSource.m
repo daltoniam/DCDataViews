@@ -105,17 +105,25 @@
     return 1;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id object = [self objectAtIndexPath:indexPath];
+    if([self.delegate respondsToSelector:@selector(didSelectObject:atIndex:)])
+        [self.delegate didSelectObject:object atIndex:indexPath];
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id object = [self objectAtIndexPath:indexPath];
+    if([self.delegate respondsToSelector:@selector(didDeselectObject:atIndex:)])
+        [self.delegate didDeselectObject:object atIndex:indexPath];
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if(!decelerate)
         if([self.layoutDelegate respondsToSelector:@selector(didEndScrolling)])
             [self.layoutDelegate didEndScrolling];
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    //if([self.layoutDelegate respondsToSelector:@selector(didEndScrolling)])
-    //    [self.layoutDelegate didEndScrolling];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

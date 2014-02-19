@@ -13,22 +13,27 @@
 @optional
 
 /**
-use so you can set different settings on the cell from the view controller layer
+ use so you can set different settings on the cell from the view controller layer
  */
 -(void)cell:(UICollectionViewCell*)cell withObject:(id)object atIndex:(NSIndexPath*)indexPath;
 
 /**
-use to set cell class to object class mapping
+ use to set cell class to object class mapping
  */
 -(Class)classForObject:(id)object;
 
 /**
-returns that a cell was tapped
+ returns that a cell was tapped
  */
 -(void)didSelectObject:(id)object atIndex:(NSIndexPath*)index;
 
 /**
-scrollView forward
+ returns that a cell was tapped and was already selected
+ */
+-(void)didDeselectObject:(id)object atIndex:(NSIndexPath*)index;
+
+/**
+ scrollView forward
  */
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView;
@@ -53,17 +58,17 @@ scrollView forward
 @interface DCCollectionSource : NSObject<UICollectionViewDelegate,UICollectionViewDataSource>
 
 /**
-this is the items of your datasource
+ this is the items of your datasource
  */
 @property(nonatomic,strong)NSMutableArray* items;
 
 /**
-this is the sections of your datasource
+ this is the sections of your datasource
  */
 @property(nonatomic,strong)NSMutableArray* sections;
 
 /**
-this is the delegate of your datasource
+ this is the delegate of your datasource
  */
 @property(nonatomic,weak)id<DCCollectionSourceDelegate> delegate;
 
