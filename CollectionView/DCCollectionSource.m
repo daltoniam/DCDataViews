@@ -110,6 +110,8 @@
     id object = [self objectAtIndexPath:indexPath];
     if([self.delegate respondsToSelector:@selector(didSelectObject:atIndex:)])
         [self.delegate didSelectObject:object atIndex:indexPath];
+    if(!self.stayActive && !collectionView.allowsMultipleSelection)
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath

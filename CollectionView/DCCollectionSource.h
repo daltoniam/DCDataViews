@@ -68,6 +68,12 @@
 @property(nonatomic,strong)NSMutableArray* sections;
 
 /**
+ this makes the cell stay highlighted after being selected.
+ Only works if allowsMultipleSelection is NO on the collectionView.
+ */
+@property(nonatomic,assign)BOOL stayActive;
+
+/**
  this is the delegate of your datasource
  */
 @property(nonatomic,weak)id<DCCollectionSourceDelegate> delegate;
