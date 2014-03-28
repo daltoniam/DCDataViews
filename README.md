@@ -1,6 +1,6 @@
 # DCDataViews #
 
-Wrappers around UITableView and UICollectionView to make simpler to use. It also provides a custom grouped tableview that is twitter bootstrapped inspired. DCCollectionViewLayout provides dynamic/variable sized cell support.
+Wrappers around UITableView and UICollectionView to make simpler to use. It also provides a custom grouped tableview that is twitter bootstrapped inspired. DCCollectionViewLayout provides dynamic/variable sized cell support. OS X version can be found [here](https://github.com/daltoniam/ACDataViews)
 
 # Dependencies #
 
