@@ -194,6 +194,8 @@
 - (void)tableView:(UITableView *)table didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id object = [self tableView:table objectForRowAtIndexPath:indexPath];
+    DCTableViewCell *cell = (DCTableViewCell*)[table cellForRowAtIndexPath:indexPath];
+    [cell didSelectCell:object];
     if([self.delegate respondsToSelector:@selector(didSelectObject:atIndex:)])
         [self.delegate didSelectObject:object atIndex:indexPath];
     if(!self.stayActive)

@@ -25,7 +25,14 @@ Return/caculate the height you want this cell subclass to be.
  It is strongly not recommend to not do any intensive work in this method, just simple property assignment from the object,
  as scrolling preformance will be damage if work is too intensive.
  As cells are recycled, this method is called often.
+ @param object is the object that associated with this cell for the time being.
  */
 -(void)setObject:(id)object;
+
+/**
+ This cell was selected, so do any styling needs when selected.
+ @param object is the object that associated with this tap.
+ */
+-(void)didSelectCell:(id)object;
 
 @end
