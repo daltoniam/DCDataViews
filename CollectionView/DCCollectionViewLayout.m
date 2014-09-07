@@ -27,11 +27,11 @@
 @interface DCCollectionViewLayout ()
 
 @property(nonatomic,weak)DCCollectionSource *dataSource;
-@property (nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
 @property (nonatomic, strong) NSMutableSet *visibleIndexPathsSet;
 @property (nonatomic, assign) CGFloat latestDelta;
 @property (nonatomic, assign) CGSize totalSize;
 @property (nonatomic, strong) NSMutableArray *layoutAttributes;
+@property (nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
 
 @end
 
@@ -63,7 +63,8 @@
     [super prepareLayout];
     if(self.dataSource.items.count > 0 && self.layoutAttributes.count == 0)
         [self sourceDidReload];
-    CGRect visibleRect = CGRectInset((CGRect){.origin = self.collectionView.bounds.origin, .size = self.collectionView.frame.size}, 0, -100); //-100
+    CGRect visibleRect = CGRectInset(self.collectionView.bounds, -self.collectionView.bounds.size.width, -self.collectionView.bounds.size.height);
+    //CGRectInset((CGRect){.origin = self.collectionView.bounds.origin, .size = self.collectionView.frame.size}, 0, -self.collectionView.frame.size.height); //-100
     
     NSArray *visibleItemArray = [self cellLayout:visibleRect];
     
@@ -184,7 +185,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)sourceDidReload
 {
+    [self.dynamicAnimator removeAllBehaviors];
     [self.layoutAttributes removeAllObjects];
+    [self.visibleIndexPathsSet removeAllObjects];
     float left = self.horizontalSpacing;
     float top = self.verticalSpacing;
     int row = 0;
@@ -197,16 +200,17 @@
         for(id object in self.dataSource.items)
         {
             Class class = [self.dataSource cellClassForObject:object];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
             CGSize size = [class collectionView:self.collectionView sizeForObject:object];
+            DCCollectionViewLayoutAttributes *attribs = [DCCollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:path];
+            attribs.frame = attribs.ogBounds = CGRectMake(left, top, size.width, size.height);
+            [self.layoutAttributes addObject:attribs];
+            left += size.width+self.horizontalSpacing;
             if(left+size.width > self.collectionView.frame.size.width)
             {
                 left = self.horizontalSpacing;
                 top += size.height + self.verticalSpacing;
             }
-            DCCollectionViewLayoutAttributes *attribs = [DCCollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-            attribs.frame = attribs.ogBounds = CGRectMake(left, top, size.width, size.height);
-            [self.layoutAttributes addObject:attribs];
-            left += size.width+self.horizontalSpacing;
             row++;
         }
     }
@@ -249,6 +253,11 @@
         }
     }
     return collect;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)didDealloc
+{
+    self.dynamicAnimator = nil;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

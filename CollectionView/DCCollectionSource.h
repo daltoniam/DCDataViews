@@ -52,6 +52,11 @@
  */
 -(void)didEndScrolling;
 
+/**
+ notifies the layout that we are about to dealloc
+ */
+-(void)didDealloc;
+
 
 @end
 
