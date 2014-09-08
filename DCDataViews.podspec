@@ -1,11 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "DCDataViews"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "Wrappers around UITableView and UICollectionView to make simpler to use."
   s.homepage     = "https://github.com/daltoniam/DCDataViews"
   s.license      = 'Apache License, Version 2.0'
   s.author       = { "Dalton Cherry" => "daltoniam@gmail.com" }
-  s.source       = { :git => "https://github.com/daltoniam/DCDataViews.git", :tag => "0.1.2" }
+  s.source       = { :git => "https://github.com/daltoniam/DCDataViews.git", :tag => "#{s.version}" }
+  s.social_media_url = 'http://twitter.com/daltoniam'
   s.ios.deployment_target = '5.0'
   s.source_files = 'DCDataViews.h'
   s.public_header_files = '*.h'
